@@ -1,4 +1,4 @@
 SikuliX-VisionProxy
 ===================
 
-sources for the native dynamic library VisionProxi.(dll/dylib/so)
+sources for the native dynamic library VisionProxy.(dll/dylib/so)
