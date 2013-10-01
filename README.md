@@ -12,14 +12,14 @@ You might try to build VisionProxy.so on your system using the sources in this p
 - OpenCV must be installed (preferably version 2.4 with png and jpeg support, but at least 2.2)
 - Tesseract must be installed (must be version 3.0+ incl. Leptonica)
 
-**sampleBuildVisionProxy**
+**sampleBuildVisionProxy**<br />
 The contained sample build script should work on Ubuntu 12+ systems.<br />
-On other systems you might have to adapt it.<br /><br />
+On other systems you might have to adapt it.
 - on some Linux installations additional dev packages might be needed to satisfy the includes during compile
 - if you get any include problems in compile steps, you might have to add/modify -I.... entries on the includeFolder= line
 - the command script expects the libraries in /usr/lib (change the variable libFolderO/libFolderT accordingly if you have other situation)
 
-**Comment on SWIG**
+**Comment on SWIG**<br />
 The file vision.swig is only contained for documentation: it is not needed for the build.
 The SWIG run was done before, to generate the Java classes in org.sikuli.basics.proxies and the C++ file visionJAVA_wrap.cxx (which is needed for the build). They provide the interface between Java and the native features.<br />
 There is nothing to do with these 2 files. And especially visionJAVA_wrap.cxx must not be changed. 
