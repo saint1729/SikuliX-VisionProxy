@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# folder(s) containing the header files
+includeParm=-I$1/include -I/usr/include -I/usr/local/include
+
+# folder containing the OpenCV libs
+libFolderO=/usr/lib
+#libFolderO=/usr/local/lib
+
+# folder containing the Tesseract lib
+libFolderT=/usr/lib
+#libFolderT=/usr/local/lib
+
+mkdir -p build
+mkdir -p dist
+
+echo compiling cvgui
+g++  -c -O3 -s  -fPIC  -MMD -MP -MF $includeParm build/cvgui.o.d -o build/cvgui.o src/cvgui.cpp
+
+echo compiling finder
+g++  -c -O3 -s  -fPIC  -MMD -MP -MF $includeParm build/finder.o.d -o build/finder.o src/finder.cpp
+
+echo compiling imgdb
+g++  -c -O3 -s  -fPIC  -MMD -MP -MF $includeParm build/imgdb.o.d -o build/imgdb.o src/imgdb.cpp
+
+echo compiling pyramid-template-matcher
+g++  -c -O3 -s  -fPIC  -MMD -MP -MF $includeParm build/pyramid-template-matcher.o.d -o build/pyramid-template-matcher.o src/pyramid-template-matcher.cpp
+
+echo compiling sikuli-debug
+g++  -c -O3 -s  -fPIC  -MMD -MP -MF $includeParm build/sikuli-debug.o.d -o build/sikuli-debug.o src/sikuli-debug.cpp
+
+echo compiling tessocr
+g++  -c -O3 -s  -fPIC  -MMD -MP -MF $includeParm build/tessocr.o.d -o build/tessocr.o src/tessocr.cpp
+
+echo compiling vision
+g++  -c -O3 -s  -fPIC  -MMD -MP -MF $includeParm build/vision.o.d -o build/vision.o src/vision.cpp
+
+echo compiling visionJAVA_wrap
+g++  -c -O3 -s  -fPIC  -MMD -MP -MF $includeParm build/visionJAVA_wrap.o.d -o build/visionJAVA_wrap.o src/visionJAVA_wrap.cxx
+
+echo linking libVisionProxy
+g++  -shared -s -fPIC -dynamic -o dist/libVisionProxy.so build/cvgui.o build/finder.o build/imgdb.o build/pyramid-template-matcher.o build/sikuli-debug.o build/tessocr.o build/vision.o build/visionJAVA_wrap.o $libFolderT/libtesseract.so $libFolderO/libopencv_core.so $libFolderO/libopencv_highgui.so $libFolderO/libopencv_imgproc.so 
+
