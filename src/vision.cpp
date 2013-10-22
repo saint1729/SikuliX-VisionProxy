@@ -85,7 +85,8 @@ void FindInput::setTarget(int target_type_, const char* target_string){
    if (target_type == TARGET_TYPE_TEXT  
        || target_type == TARGET_TYPE_BUTTON){
       target_text = target_string;
-   } else if (target_type == TARGET_TYPE_IMAGE){      
+   } else if (target_type == TARGET_TYPE_IMAGE
+	   || target_type == TARGET_TYPE_MAT){
       if(fileExists(target_string))
          target = cv::imread(target_string,1);
    }
